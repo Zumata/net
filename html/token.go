@@ -117,6 +117,14 @@ func (t Token) String() string {
 	return "Invalid(" + strconv.Itoa(int(t.Type)) + ")"
 }
 
+func (t Token) ExpandSelfClosingTagString() string {
+	if t.Type == SelfClosingTagToken {
+		return "<" + t.tagString() + "></" + t.Data + ">"
+	}
+
+	return t.String()
+}
+
 // span is a range of bytes in a Tokenizer's buffer. The start is inclusive,
 // the end is exclusive.
 type span struct {

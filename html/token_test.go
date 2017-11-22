@@ -460,11 +460,15 @@ loop:
 					t.Errorf("%s token %d: want %q got error %v", tt.desc, i, s, z.Err())
 					continue loop
 				}
-				actual := z.Token().String()
+				token := z.Token()
+
+				actual := token.String()
 				if s != actual {
 					t.Errorf("%s token %d: want %q got %q", tt.desc, i, s, actual)
 					continue loop
 				}
+				// TODO test
+				// token.ExpandSelfClosingTagString()
 			}
 		}
 		z.Next()
